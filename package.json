@@ -1,0 +1,40 @@
+{
+  "name": "ikea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "vue": "^2.6.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^5.2.6",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "style-loader": "^2.0.0",
+    "vue-loader": "^15.9.7",
+    "vue-template-compiler": "^2.6.13",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development",
+    "start": "webpack serve --mode development --env development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git-user-111/ikea.git"
+  },
+  "author": "user1002233 <user1002233@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git-user-111/ikea/issues"
+  },
+  "homepage": "https://github.com/git-user-111/ikea#readme"
+}
