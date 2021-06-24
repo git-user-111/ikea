@@ -1,12 +1,17 @@
 <template>
   <div class="main-page">
-    <router-link to="/product-search">Найти</router-link>
+    <input v-model="message" placeholder="Поиск по товару или артикулу">
+    <router-link :to="`/product-search?q=${message}`">Найти</router-link>
   </div>
 </template>
 
 <script>
 export default {
-
+  data: function() {
+    return {
+      message: "",
+    }
+  },
 }
 </script>
 
