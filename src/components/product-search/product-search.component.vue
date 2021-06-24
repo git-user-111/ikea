@@ -27,7 +27,8 @@ export default {
     return {
       message: this.$route.query.q,
       products: [],
-      firstProducts: []
+      firstProducts: [],
+      closedServerLoading: true,
     }
   },
   mounted: function () {
@@ -54,50 +55,64 @@ export default {
               if (item.product && item.type === "PRODUCT") {
                 const name = item.product.name;
                 const priceNumeral = item.product.priceNumeral;
-                item.product.gprDescription.variants.forEach(variant => {
-                  this.firstProducts.push({
-                    id: variant.id,
-                    name: name,
-                    description: variant.imageAlt,
-                    imageUrl: variant.imageUrl,
-                    link: variant.pipUrl,
-                    priceNumeral: priceNumeral,
-                  })
-                });
+                if (this.closedServerLoading) {
+                  item.product.gprDescription.variants.forEach(variant => {
+                    this.products.push({
+                      id: variant.id,
+                      name: name,
+                      description: variant.imageAlt,
+                      imageUrl: variant.imageUrl,
+                      link: variant.pipUrl,
+                      priceNumeral: priceNumeral,
+                    })
+                  });
+                } else {
+                  item.product.gprDescription.variants.forEach(variant => {
+                    this.firstProducts.push({
+                      id: variant.id,
+                      name: name,
+                      description: variant.imageAlt,
+                      imageUrl: variant.imageUrl,
+                      link: variant.pipUrl,
+                      priceNumeral: priceNumeral,
+                    })
+                  });
+                }
               }
             });
 
-
-            this.firstProducts.forEach((firstProduct) => {
-              fetch(`http://f0555782.xsph.ru//?url=${firstProduct.link}`, {
-                  mode: 'cors',
-                  method: "POST"
-                })
-                .then((response) => {
-                  return response.json();
-                })
-                .then((response) => {
-                  console.log(response)
-                  response.products.forEach((product) => {
-                    const cond = this.products.some(function(e){ 
-                      return e.id == product.id;
+            if (!this.closedServerLoading) {
+              this.firstProducts.forEach((firstProduct) => {
+                fetch(`http://f0555782.xsph.ru/?url=${firstProduct.link}`, {
+                    mode: 'cors',
+                    method: "POST"
+                  })
+                  .then((response) => {
+                    return response.json();
+                  })
+                  .then((response) => {
+                    console.log(response)
+                    response.products.forEach((product) => {
+                      const cond = this.products.some(function(e){ 
+                        return e.id == product.id;
+                      });
+                      if (!cond) {
+                        this.products.push({
+                          id: product.id,
+                          name: product.title,
+                          description: product.text,
+                          link: product.url,
+                          imageUrl: product.image,
+                          priceNumeral: product.price
+                        })
+                      }
                     });
-                    if (!cond) {
-                      this.products.push({
-                        id: product.id,
-                        name: product.title,
-                        description: product.text,
-                        link: product.url,
-                        imageUrl: product.image,
-                        priceNumeral: product.price
-                      })
-                    }
+                  })
+                  .catch(err => {
+                    console.log('Failed fetch ' + err);
                   });
-                })
-                .catch(err => {
-                  console.log('Failed fetch ' + err);
-                });
-            })
+              });
+            }
           })
       }
     }
