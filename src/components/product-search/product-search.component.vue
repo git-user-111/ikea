@@ -69,7 +69,7 @@ export default {
 
 
             this.firstProducts.forEach((firstProduct) => {
-              fetch(`http://j92342z7.beget.tech/?url=${firstProduct.link}`, {
+              fetch(`http://f0555782.xsph.ru//?url=${firstProduct.link}`, {
                   mode: 'cors',
                   method: "POST"
                 })
@@ -83,14 +83,14 @@ export default {
                       return e.id == product.id;
                     });
                     if (!cond) {
-                      // this.products.push({
-                      //   id: product.id,
-                      //   name: product.title,
-                      //   description: product.text,
-                      //   link: product.url,
-                      //   imageUrl: product.image,
-                      //   priceNumeral: product.price
-                      // })
+                      this.products.push({
+                        id: product.id,
+                        name: product.title,
+                        description: product.text,
+                        link: product.url,
+                        imageUrl: product.image,
+                        priceNumeral: product.price
+                      })
                     }
                   });
                 })
