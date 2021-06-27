@@ -75,7 +75,7 @@ export default {
       }
 
       &--search {
-        border-radius: 0px 5px 5px 0px;
+        border-radius: 0px 3px 3px 0px;
         padding: 10px 20px;
       }
 
