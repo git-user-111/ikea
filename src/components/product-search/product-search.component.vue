@@ -148,6 +148,7 @@ export default {
     grid-row-gap: 20px;
     .product-search_product {
       padding: 15px;
+      max-width: 250px;
       &:hover {
         box-shadow: 0 10px 10px rgba(0,0,0,0.5);
       }
