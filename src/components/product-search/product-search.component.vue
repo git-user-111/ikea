@@ -3,14 +3,14 @@
     <input v-model="message" placeholder="Поиск по товару или артикулу">
     <router-link :to="`/product-search?q=${message}`">Найти</router-link>
     <p>Всего найдено: {{ products.length }}</p>
-    <div class="product-search__products">
+    <div class="product-search_products">
       <div
-        class="product-search__product"
+        class="product-search_product"
         v-for="product in products"
         :key="product.id"
       >
         <div>
-          <img class="product-search__product-image" :src="product.imageUrl">
+          <img class="product-search_product-image" :src="product.imageUrl">
         </div>
         <p>{{ product.id }}</p>
         <p>{{ product.name }}</p>
@@ -123,19 +123,19 @@ export default {
 
 <style lang="scss" scoped>
 .product-search {
-  &__products {
+  &_products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-column-gap: 10px;
     grid-row-gap: 20px;
-    .product-search__product {
+    .product-search_product {
       padding: 15px;
       &:hover {
         box-shadow: 0 10px 10px rgba(0,0,0,0.5);
       }
     }
   }
-  &__product-image {
+  &_product-image {
     width: 100%;
     height: auto;
   }
