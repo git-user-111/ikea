@@ -1,15 +1,15 @@
 <template>
     <div>
-        <header-component></header-component>
+        <nav-component></nav-component>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
-import HeaderComponent from './components/header/header.component.vue'
+import NavComponent from './components/nav/nav.component.vue'
 export default {
     components: {
-        HeaderComponent
+        NavComponent
     },
     data() {
         return {
