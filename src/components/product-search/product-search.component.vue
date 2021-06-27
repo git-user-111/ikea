@@ -29,6 +29,7 @@ export default {
       products: [],
       firstProducts: [],
       closedServerLoading: true,
+      serverUrl: 'http://j92342z7.beget.tech/'
     }
   },
   mounted: function () {
@@ -83,7 +84,7 @@ export default {
 
             if (!this.closedServerLoading) {
               this.firstProducts.forEach((firstProduct) => {
-                fetch(`http://f0555782.xsph.ru/?url=${firstProduct.link}`, {
+                fetch(`${this.serverUrl}/?url=${firstProduct.link}`, {
                     mode: 'cors',
                     method: "POST"
                   })
