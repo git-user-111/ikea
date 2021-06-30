@@ -76,10 +76,11 @@ export default {
                 });
               } else if (this.closedServerLoading) {
                 item.product.gprDescription.variants.forEach(variant => {
+                  const description = variant.imageAlt.replace(name, '');
                   this.products.push({
                     id: variant.id,
                     name: name,
-                    description: variant.imageAlt,
+                    description: description,
                     imageUrl: variant.imageUrl,
                     link: variant.pipUrl,
                     priceNumeral: priceNumeral,
