@@ -55,7 +55,7 @@ export default {
           this.message = this.message.replaceAll(" ", "");
         }
         this.products = [];
-        fetch(`https://www.ikea.com/search/ru/ru/search-result-page?max-num-filters=8&q="${this.message}"&autocorrect=true&size=96&columns=4&sessionId=efd95311-0d91-4801-99e6-7464fd18c5c3&subcategories-style=tree-navigation&columns=%26columns%3D4&types=PRODUCT%2CCONTENT%2CPLANNER%2CREFINED_SEARCHES%2CANSWER&c=sr&v=20210322`)
+        fetch(`https://www.ikea.com/search/ru/ru/search-result-page?max-num-filters=8&q="${this.message}"&autocorrect=true&size=96&columns=4&subcategories-style=tree-navigation&columns=%26columns%3D4&types=PRODUCT%2CCONTENT%2CPLANNER%2CREFINED_SEARCHES%2CANSWER&c=sr`)
           .then((response) => {
             return response.json();
           })
