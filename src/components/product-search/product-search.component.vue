@@ -87,21 +87,35 @@ export default {
                   });
                 });
               } else {
-                item.product.gprDescription.variants.forEach(variant => {
-                  this.firstProducts.push({
-                    id: variant.id,
+                if (
+                  item.product.gprDescription.variants
+                  && item.product.gprDescription.variants.length === 0
+                ) {
+                  this.products.push({
+                    id: item.product.id,
                     name: name,
-                    description: variant.imageAlt,
-                    imageUrl: variant.imageUrl,
-                    link: variant.pipUrl,
+                    description: item.product.typeName + " " + item.product.itemMeasureReferenceText,
+                    imageUrl: item.product.mainImageUrl,
+                    link: item.product.pipUrl,
                     priceNumeral: priceNumeral,
-                  })
-                });
+                  });
+                } else {
+                  item.product.gprDescription.variants.forEach(variant => {
+                    this.firstProducts.push({
+                      id: variant.id,
+                      name: name,
+                      description: variant.imageAlt,
+                      imageUrl: variant.imageUrl,
+                      link: variant.pipUrl,
+                      priceNumeral: priceNumeral,
+                    });
+                  });
+                }
               }
             }
           });
 
-          if (!this.closedServerLoading && this.regex1 == null) {
+          if (!this.closedServerLoading && this.message.match(this.regex1) === null) {
             this.firstProducts.forEach((firstProduct) => {
               fetch(`${this.serverUrl}/?url=${firstProduct.link}`, {
                   mode: 'cors',
