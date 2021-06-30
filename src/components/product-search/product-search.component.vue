@@ -30,18 +30,13 @@ export default {
       firstProducts: [],
       closedServerLoading: true,
       serverUrl: 'http://j92342z7.beget.tech/',
-      versionUrl: null,
-      version: null,
       regex1: new RegExp("^\\d{8}$", "g"),
       regex2: new RegExp("^\\d{3}[,]{1}\\d{3}[,]{1}\\d{2}$", "g"),
       regex3: new RegExp("^\\d{3}[ ]{1}\\d{3}[ ]{1}\\d{2}$", "g")
     }
   },
-  created: function () {
-    this.versionUrl = `${this.serverUrl}getversion.php?url=https://www.ikea.com/ru/ru/search/box.53ea33c0.js`;
-  },
   mounted: function () {
-    this.getVersion();
+    this.getProducts();
   },
   watch: {
     $route(to) {
@@ -51,17 +46,7 @@ export default {
   },
   methods:
   {
-    getVersion: function() {
-      fetch(this.versionUrl)
-        .then((response) => {
-          return response.text();
-        })
-        .then((response) => {
-          this.version = response;
-          this.getProducts(this.version);
-        })
-    },
-    getProducts: function(version) {
+    getProducts: function() {
       if (this.message !== "") {
         if (this.message.match(this.regex2)) {
           this.message = this.message.replaceAll(",", "");
@@ -70,7 +55,7 @@ export default {
           this.message = this.message.replaceAll(" ", "");
         }
         this.products = [];
-        fetch(`https://www.ikea.com/search/ru/ru/search-result-page?max-num-filters=8&q="${this.message}"&autocorrect=true&size=96&columns=4&subcategories-style=tree-navigation&columns=%26columns%3D4&types=PRODUCT%2CCONTENT%2CPLANNER%2CREFINED_SEARCHES%2CANSWER&c=sr`)
+        fetch(`https://www.ikea.com/search/ru/ru/search-result-page?max-num-filters=8&q="${this.message}"&autocorrect=true&size=96&columns=4&sessionId=efd95311-0d91-4801-99e6-7464fd18c5c3&subcategories-style=tree-navigation&columns=%26columns%3D4&types=PRODUCT%2CCONTENT%2CPLANNER%2CREFINED_SEARCHES%2CANSWER&c=sr&v=20210322`)
           .then((response) => {
             return response.json();
           })
@@ -125,6 +110,7 @@ export default {
                   return response.json();
                 })
                 .then((response) => {
+                  console.log(response)
                   response.products.forEach((product) => {
                     const cond = this.products.some(function(e){
                       return e.id == product.id;
