@@ -28,7 +28,7 @@ export default {
       message: this.$route.query.q,
       products: [],
       firstProducts: [],
-      closedServerLoading: true,
+      closedServerLoading: false,
       serverUrl: 'http://j92342z7.beget.tech/',
       regex1: new RegExp("^\\d{8}$", "g"),
       regex2: new RegExp("^\\d{3}[,]{1}\\d{3}[,]{1}\\d{2}$", "g"),
@@ -116,36 +116,46 @@ export default {
           });
 
           if (!this.closedServerLoading && this.message.match(this.regex1) === null) {
-            this.firstProducts.forEach((firstProduct) => {
+            let requests = this.firstProducts.map(firstProduct =>
               fetch(`${this.serverUrl}/?url=${firstProduct.link}`, {
-                  mode: 'cors',
-                  method: "POST"
-                })
-                .then((response) => {
-                  return response.json();
-                })
-                .then((response) => {
-                  console.log(response)
-                  response.products.forEach((product) => {
-                    const cond = this.products.some(function(e){
-                      return e.id == product.id;
+                mode: 'cors',
+                method: "POST"
+              })
+            );
+
+            const promises = [];
+            Promise.all(requests)
+              .then((responses) => {
+                responses.forEach(response => { promises.push(response.json()) });
+                return promises
+              })
+              .then((promises) => {
+                promises.forEach(promise => {
+                  promise.then((jsonResponse) => {
+                    jsonResponse.products.forEach((product) => {
+                      const cond = this.products.some(function(e){
+                        return e.id == product.id;
+                      });
+                      if (!cond) {
+                        this.products.push({
+                          id: product.id,
+                          name: product.title,
+                          description: product.text,
+                          link: product.url,
+                          imageUrl: product.image,
+                          priceNumeral: product.price
+                        })
+                      }
                     });
-                    if (!cond) {
-                      this.products.push({
-                        id: product.id,
-                        name: product.title,
-                        description: product.text,
-                        link: product.url,
-                        imageUrl: product.image,
-                        priceNumeral: product.price
-                      })
-                    }
+                  })
+                  .catch(err => {
+                    console.log('Failed fetch ' + err);
                   });
                 })
-                .catch(err => {
-                  console.log('Failed fetch ' + err);
-                });
-            });
+              })
+              .catch(err => {
+                console.log('Failed fetch ' + err);
+              });
           }
         });
       }
