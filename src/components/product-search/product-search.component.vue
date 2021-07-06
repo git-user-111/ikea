@@ -26,11 +26,16 @@ export default {
   data: function() {
     return {
       message: this.$route.query.q,
+      /** Конечные продукты */
       products: [],
+      /** Продукты, полученные первыми, напрямую с сайта ikea */
       firstProducts: [],
-      closedServerLoading: false,
+      /** Флаг запрета запроса к серверу */
+      closedRequestToServer: false,
+      /** Запрос на получение первых продуктов */
       searchRequest: null,
       serverUrl: 'http://j92342z7.beget.tech/',
+      // Шаблоны для проверки является ли введенное артиклем товара
       articleRegex1: new RegExp("^\\d{8}$", "g"),
       articleRegex2: new RegExp("^\\d{3}[,]{1}\\d{3}[,]{1}\\d{2}$", "g"),
       articleRegex3: new RegExp("^\\d{3}[ ]{1}\\d{3}[ ]{1}\\d{2}$", "g")
@@ -49,11 +54,11 @@ export default {
     getProducts: function() {
       if (this.message !== "") {
         this.searchRequest = `https://www.ikea.com/search/ru/ru/search-result-page?max-num-filters=8&q="${this.message}"&autocorrect=true&size=96&columns=4&subcategories-style=tree-navigation&columns=%26columns%3D4&types=PRODUCT%2CCONTENT%2CPLANNER%2CREFINED_SEARCHES%2CANSWER&c=sr`;
-        if (this.message.match(this.articleRegex2)) {
-          this.message = this.message.replaceAll(",", "");
+        if (this.message.match(this.articleRegex2)) { // Если введен артикль второго вида
+          this.message = this.message.replaceAll(",", ""); // Привести артикль к первому виду
         }
-        if (this.message.match(this.articleRegex3)) {
-          this.message = this.message.replaceAll(" ", "");
+        if (this.message.match(this.articleRegex3)) { // Если введен артикль третьего вида
+          this.message = this.message.replaceAll(" ", ""); // Привести артикль к первому виду
         }
         this.products = [];
         fetch(this.searchRequest)
@@ -62,11 +67,12 @@ export default {
           })
           .then((response) => {
             this.firstProducts = [];
-            response.searchResultPage.products.main.items.forEach(item => {
-              if (item.product && item.type === "PRODUCT") {
+            const differentProducts = response.searchResultPage.products.main.items;
+            differentProducts.forEach(item => {
+              if (item.product && item.type === "PRODUCT") { // Если это продукт
                 const name = item.product.name;
                 const priceNumeral = item.product.priceNumeral;
-                if (this.message.match(this.articleRegex1)) {
+                if (this.message.match(this.articleRegex1)) { // Если введен артикль первого вида
                   this.products.push({
                     id: item.product.id,
                     name: name,
@@ -75,7 +81,7 @@ export default {
                     link: item.product.pipUrl,
                     priceNumeral: priceNumeral,
                   });
-                } else if (this.closedServerLoading) {
+                } else if (this.closedRequestToServer) {
                   item.product.gprDescription.variants.forEach(variant => {
                     const description = variant.imageAlt.replace(name, '');
                     this.products.push({
@@ -91,7 +97,7 @@ export default {
                   if (
                     item.product.gprDescription.variants
                     && item.product.gprDescription.variants.length === 0
-                  ) {
+                  ) { // Если другие разновидности этого товара отсутствуютотсутствуют
                     this.products.push({
                       id: item.product.id,
                       name: name,
@@ -116,8 +122,13 @@ export default {
               }
           });
 
-          if (!this.closedServerLoading && this.message.match(this.articleRegex1) === null) {
-            let requests = this.firstProducts.map(firstProduct =>
+          if (
+            this.firstProducts
+            && this.firstProducts.length !== 0
+            && !this.closedRequestToServer
+            && this.message.match(this.articleRegex1) === null
+          ) {
+            const requests = this.firstProducts.map(firstProduct =>
               fetch(`${this.serverUrl}/?url=${firstProduct.link}`, {
                 mode: 'cors',
                 method: "POST"
