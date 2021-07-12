@@ -23,12 +23,15 @@ export default {
 </script>
 
 <style scoped>
+.nav {
+  display: flex;
+}
 .nav_left {
   display: flex;
   list-style-type: none;
 }
 
-.nav_left li {
+.nav_left li, .nav_right li {
   padding: 20px 20px;
   margin-right: 5px;
   background-color: gainsboro;
