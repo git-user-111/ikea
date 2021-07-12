@@ -2,6 +2,7 @@
   <div class="product-search">
     <input v-model="message" placeholder="Поиск по товару или артикулу">
     <router-link :to="`/product-search?q=${message}`">Найти</router-link>
+    <button v-on:click="selectProduct()">Тестовая кнопка add</button>
     <p>Всего найдено: {{ products.length }}</p>
     <div class="product-search_products">
       <div
@@ -51,6 +52,9 @@ export default {
     }
   },
   methods: {
+    selectProduct: function() {
+      this.$eventBus.$emit('select-product', { productItem: 'abc' })
+    },
     getProducts: function() {
       if (this.message !== "") {
         this.searchRequest = `https://www.ikea.com/search/ru/ru/search-result-page?max-num-filters=8&q="${this.message}"&autocorrect=true&size=96&columns=4&subcategories-style=tree-navigation&columns=%26columns%3D4&types=PRODUCT%2CCONTENT%2CPLANNER%2CREFINED_SEARCHES%2CANSWER&c=sr`;
