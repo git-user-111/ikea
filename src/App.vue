@@ -1,15 +1,18 @@
 <template>
     <div>
         <nav-component></nav-component>
+        <shopping-cart-component></shopping-cart-component>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
 import NavComponent from './components/nav/nav.component.vue'
+import ShoppingCartComponent from './components/shopping-cart/shopping-cart.component.vue'
 export default {
     components: {
-        NavComponent
+        NavComponent,
+        ShoppingCartComponent
     },
     data() {
         return {
