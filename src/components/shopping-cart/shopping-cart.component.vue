@@ -17,8 +17,10 @@ export default {
     if (localStorage.getItem('IkeastoreProductsAmount') === null) {
       localStorage.setItem('IkeastoreProductsAmount', "0");
       // добавить сюда вызов события увеличения суммы в других компонентах
+      this.$eventBus.$emit('edit-amount-products', 0)
     } else {
       this.selectedProducts.amount = parseInt(localStorage.getItem('IkeastoreProductsAmount'));
+      this.$eventBus.$emit('edit-amount-products', this.selectedProducts.amount)
     }
     if (localStorage.getItem('IkeastoreProductsItems') === null) {
       localStorage.setItem('IkeastoreProductsItems', "[]");
@@ -34,6 +36,8 @@ export default {
       localStorage.setItem('IkeastoreProductsAmount', this.selectedProducts.amount.toString());
       const items = '{"items": [' + this.selectedProducts.items.map((item) => JSON.stringify(item)) + ']}'.replaceAll('/\\/g', '');
       localStorage.setItem('IkeastoreProductsItems', items);
+
+      this.$eventBus.$emit('edit-amount-products', this.selectedProducts.amount)
     }
   }
 }

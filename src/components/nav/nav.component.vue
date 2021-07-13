@@ -1,4 +1,4 @@
-<template><div>
+<template>
   <nav class="nav">
       <ul class="nav_left">
           <li>
@@ -10,15 +10,26 @@
           <li>Контакты</li>
       </ul>
       <ul class="nav_right">
-          <li>Вход</li>
+          <li>Товаров в корзине: {{ productsAmount }}</li>
       </ul>
   </nav>
-</div>
 </template>
 
 <script>
 export default {
-
+  data: function() {
+    return {
+      productsAmount: 0
+    }
+  },
+  created: function() {
+    this.$eventBus.$on('edit-amount-products', (amount) => this.setProductsAmount(amount));
+  },
+  methods: {
+    setProductsAmount: function(amount) {
+      this.productsAmount = amount;
+    }
+  }
 }
 </script>
 
