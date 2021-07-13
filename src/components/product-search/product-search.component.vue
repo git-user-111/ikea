@@ -2,7 +2,6 @@
   <div class="product-search">
     <input v-model="message" placeholder="Поиск по товару или артикулу">
     <router-link :to="`/product-search?q=${message}`">Найти</router-link>
-    <button v-on:click="selectProduct()">Тестовая кнопка add</button>
     <p>Всего найдено: {{ products.length }}</p>
     <div class="product-search_products">
       <div
@@ -17,6 +16,7 @@
         <p>{{ product.name }}</p>
         <p>{{ product.description }}</p>
         <p>{{ product.priceNumeral }}</p>
+        <button v-on:click="selectProduct(product)">В корзину</button>
       </div>
     </div>
   </div>
@@ -52,8 +52,8 @@ export default {
     }
   },
   methods: {
-    selectProduct: function() {
-      this.$eventBus.$emit('select-product', { productItem: 'abc' })
+    selectProduct: function(product) {
+      this.$eventBus.$emit('select-product', product)
     },
     getProducts: function() {
       if (this.message !== "") {
