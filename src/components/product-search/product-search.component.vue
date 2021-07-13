@@ -32,7 +32,7 @@ export default {
       /** Продукты, полученные первыми, напрямую с сайта ikea */
       firstProducts: [],
       /** Флаг запрета запроса к серверу */
-      closedRequestToServer: false,
+      closedRequestToServer: true,
       /** Запрос на получение первых продуктов */
       searchRequest: null,
       serverUrl: 'http://j92342z7.beget.tech/',
