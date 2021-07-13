@@ -12,6 +12,10 @@ export default new Router({
             component: MainPageComponent
         },
         {
+            path: "/cart",
+            component: MainPageComponent
+        },
+        {
             path: "/product-search",
             component: ProductSearchComponent
         }

@@ -10,7 +10,9 @@
           <li>Контакты</li>
       </ul>
       <ul class="nav_right">
-          <li>Товаров в корзине: {{ productsAmount }}</li>
+          <li>
+            <router-link to="/cart">Товаров в корзине: {{ productsAmount }}</router-link>
+          </li>
       </ul>
   </nav>
 </template>

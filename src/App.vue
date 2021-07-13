@@ -2,7 +2,7 @@
     <div>
         <nav-component></nav-component>
         <shopping-cart-component></shopping-cart-component>
-        <router-view></router-view>
+        <router-view v-if="$route.path !== '/cart'"></router-view>
     </div>
 </template>
 

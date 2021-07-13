@@ -1,5 +1,7 @@
 <template>
-  <div class="shopping-cart">
+  <div
+    v-if="$route.path === '/cart'"
+    class="shopping-cart">
   </div>
 </template>
 
