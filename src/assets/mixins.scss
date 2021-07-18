@@ -21,9 +21,30 @@
   }
 }
 
-// Extra large devices
+// Extra large lvl1 devices
 @mixin xl {
   @media (min-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+// Extra large lvl2 devices
+@mixin xxl {
+  @media (min-width: #{$screen-xxl-min}) {
+    @content;
+  }
+}
+
+// Extra large lvl3 devices
+@mixin xxxl {
+  @media (min-width: #{$screen-xxxl-min}) {
+    @content;
+  }
+}
+
+// Extra large lvl4 devices
+@mixin xxxxl {
+  @media (min-width: #{$screen-xxxxl-min}) {
     @content;
   }
 }
