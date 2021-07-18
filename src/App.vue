@@ -21,3 +21,11 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+@import "./assets/mixins.scss";
+.wrapper {
+    @include wrapper;
+    margin: 0 auto;
+}
+</style>

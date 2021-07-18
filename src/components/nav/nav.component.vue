@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav">
+  <nav class="nav wrapper">
       <ul class="nav_left">
           <li>
             <router-link to="/">Главная</router-link>

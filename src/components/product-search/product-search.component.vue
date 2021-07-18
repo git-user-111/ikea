@@ -1,5 +1,5 @@
 <template>
-  <div class="product-search">
+  <div class="product-search wrapper">
     <input v-model="message" placeholder="Поиск по товару или артикулу">
     <router-link :to="`/product-search?q=${message}`">Найти</router-link>
     <p>Всего найдено: {{ products.length }}</p>

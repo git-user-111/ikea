@@ -55,3 +55,33 @@
     @content;
   }
 }
+
+@mixin wrapper {
+  @include sm {
+    max-width: calc(100% - 20px);
+  }
+
+  @include md {
+    max-width: #{$screen-md-min - 40px};
+  }
+
+  @include lg {
+    max-width: #{$screen-lg-min - 60px};
+  }
+
+  @include xl {
+    max-width: #{$screen-xl-min - 80px};
+  }
+
+  @include xxl {
+    max-width: #{$screen-xxl-min - 90px};
+  }
+
+  @include xxxl {
+    max-width: #{$screen-xxxl-min - 100};
+  }
+
+  @include xxxxl {
+    max-width: #{$screen-xxxxl-min - 110px};
+  }
+}

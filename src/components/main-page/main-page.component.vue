@@ -1,7 +1,7 @@
 <template>
   <div class="main-page">
     <header-component></header-component>
-    <div class="search">
+    <div class="search wrapper">
       <div class="search_content">
         <input class="search_input" v-model="message" placeholder="Поиск по товару или артикулу">
         <router-link class="search_button" :to="`/product-search?q=${message}`">
