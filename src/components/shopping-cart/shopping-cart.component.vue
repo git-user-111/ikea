@@ -1,7 +1,61 @@
 <template>
   <div
     v-if="$route.path === '/cart'"
-    class="shopping-cart">
+    class="shopping-cart wrapper"
+  >
+    <h1>Ваша корзина</h1>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 140px"></th>
+          <th>Наименование</th>
+          <th>Количество</th>
+          <th>Цена, руб.</th>
+          <th>Сумма, руб.</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr 
+          v-for="product in selectedProducts.items"
+          :key="product.id"
+        >
+          <td>
+            <div class="shopping-cart_product-image">
+              <img :src="product.imageUrl">
+            </div>
+          </td>
+          <td>
+              <div class="shopping-cart_description">
+                <p>{{ product.name }}</p>
+                <p>{{ product.description }}</p>
+                <p>Артикул: {{ product.id }}</p>
+              </div>
+          </td>
+          <td>
+            <div>
+              <input
+                type="number"
+                name="amount"
+                v-model.lazy="product.amount"
+                min=1
+                max=100
+                @change="changeItemAmount($event, product)"
+                required>
+            </div>
+          </td>
+          <td>
+            <div>
+                <p>{{ product.priceNumeral }} ₽</p>
+            </div>
+          </td>
+          <td>
+            <div>
+                <p>{{ product.priceNumeral * product.amount }} ₽</p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -15,11 +69,21 @@ export default {
       }
     }
   },
+  computed: {
+    items() {
+      console.log(1)
+      return this.selectedProducts.items;
+    }
+  },
+  watch: {
+    items: function(val) {
+      console.log(val)
+    }
+  },
   mounted: function () {
     if (localStorage.getItem('IkeastoreProductsAmount') === null) {
       localStorage.setItem('IkeastoreProductsAmount', "0");
-      // добавить сюда вызов события увеличения суммы в других компонентах
-      this.$eventBus.$emit('edit-amount-products', 0)
+      this.$eventBus.$emit('edit-amount-products', 0);
     } else {
       this.selectedProducts.amount = parseInt(localStorage.getItem('IkeastoreProductsAmount'));
       this.$eventBus.$emit('edit-amount-products', this.selectedProducts.amount)
@@ -32,6 +96,15 @@ export default {
     this.$eventBus.$on('select-product', (product) => this.selectProduct(product));
   },
   methods: {
+    changeItemAmount: function(event, product) {
+      const fixedAmount = typeof event.target.value === "number"
+        ? event.target.value.toString().replace(/^[- 0]$/,'')
+        : event.target.value.replace(/^[- 0]$/,'');
+      const fixedAmount2 = fixedAmount === '' ? "1" : fixedAmount;
+      product.amount = parseInt(fixedAmount2);
+      const items = '{"items": [' + this.selectedProducts.items.map((item) => JSON.stringify(item)) + ']}'.replaceAll('/\\/g', '');
+      localStorage.setItem('IkeastoreProductsItems', items);
+    },
     selectProduct: function(product) {
       this.selectedProducts.amount++;
       this.selectedProducts.items.push(product);
@@ -39,8 +112,31 @@ export default {
       const items = '{"items": [' + this.selectedProducts.items.map((item) => JSON.stringify(item)) + ']}'.replaceAll('/\\/g', '');
       localStorage.setItem('IkeastoreProductsItems', items);
 
-      this.$eventBus.$emit('edit-amount-products', this.selectedProducts.amount)
+      this.$eventBus.$emit('edit-amount-products', this.selectedProducts.amount);
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.shopping-cart {
+  table {
+    width: 100%;
+  }
+  thead tr th {
+    text-align: left;
+  }
+
+  &_product {
+    display: flex;
+    justify-content: space-between;
+  }
+  &_product-image {
+    width: 110px;
+    height: 110px;
+    img {
+      max-width: 100%;
+    }
+  }
+}
+</style>

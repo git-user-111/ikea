@@ -53,6 +53,7 @@ export default {
   },
   methods: {
     selectProduct: function(product) {
+      product.amount++;
       this.$eventBus.$emit('select-product', product)
     },
     getProducts: function() {
@@ -84,6 +85,7 @@ export default {
                     imageUrl: item.product.mainImageUrl,
                     link: item.product.pipUrl,
                     priceNumeral: priceNumeral,
+                    amount: 0
                   });
                 } else if (this.closedRequestToServer) {
                   item.product.gprDescription.variants.forEach(variant => {
@@ -95,6 +97,7 @@ export default {
                       imageUrl: variant.imageUrl,
                       link: variant.pipUrl,
                       priceNumeral: priceNumeral,
+                      amount: 0
                     });
                   });
                 } else {
@@ -109,6 +112,7 @@ export default {
                       imageUrl: item.product.mainImageUrl,
                       link: item.product.pipUrl,
                       priceNumeral: priceNumeral,
+                      amount: 0
                     });
                   } else {
                     item.product.gprDescription.variants.forEach(variant => {
@@ -119,6 +123,7 @@ export default {
                         imageUrl: variant.imageUrl,
                         link: variant.pipUrl,
                         priceNumeral: priceNumeral,
+                        amount: 0
                       });
                     });
                   }
@@ -159,7 +164,8 @@ export default {
                           description: product.text,
                           link: product.url,
                           imageUrl: product.image,
-                          priceNumeral: product.price
+                          priceNumeral: product.price,
+                          amount: 0
                         })
                       }
                     });
