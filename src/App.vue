@@ -24,6 +24,9 @@ export default {
 
 <style lang="scss">
 @import "./assets/mixins.scss";
+body {
+    margin: 0;
+}
 .wrapper {
     @include wrapper;
     margin: 0 auto;
