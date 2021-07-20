@@ -35,23 +35,42 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../assets/mixins.scss";
+// TODO сделать переключение на мобильный вид и обратно
 .nav {
-  display: flex;
+  @include rwd(0) {
+    display: none;
+  }
+
+  @include md {
+    display: flex;
+    justify-content: space-between;
+  }
 }
-.nav_left {
+
+.nav_left, .nav_right {
   display: flex;
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 600;
+  a {
+    text-decoration-line: none;
+
+    &:visited {
+      color: #000;
+    }
+
+    &:hover {
+      color: #007dd6;
+    }
+  }
 }
 
 .nav_left li, .nav_right li {
   padding: 20px 20px;
   margin-right: 5px;
-  background-color: gainsboro;
-}
-
-.nav_right {
-  display: flex;
-  list-style-type: none;
 }
 </style>
