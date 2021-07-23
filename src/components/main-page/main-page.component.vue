@@ -13,16 +13,19 @@
         </router-link>
       </div>
     </div>
+    <price-component></price-component>
   </div>
 </template>
 
 <script>
 import ButtonComponent from '../button/button.component.vue'
 import HeaderComponent from '../header/header.component.vue';
+import PriceComponent from '../price/price.component.vue';
 export default {
   components: {
     ButtonComponent,
-    HeaderComponent
+    HeaderComponent,
+    PriceComponent
   },
   data: function() {
     return {
