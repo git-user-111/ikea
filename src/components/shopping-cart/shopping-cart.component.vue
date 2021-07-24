@@ -66,7 +66,8 @@ export default {
       selectedProducts: {
         amount: 0,
         items: []
-      }
+      },
+      productsMax: 500
     }
   },
   computed: {
@@ -100,7 +101,11 @@ export default {
       const fixedAmount = typeof event.target.value === "number"
         ? event.target.value.toString().replace(/^[- 0]$/,'')
         : event.target.value.replace(/^[- 0]$/,'');
-      const fixedAmount2 = fixedAmount === '' ? "1" : fixedAmount;
+      const fixedAmount2 = fixedAmount === ''
+      ? "1"
+      : parseInt(fixedAmount) > this.productsMax
+       ? this.productsMax.toString()
+       : fixedAmount;
       product.amount = parseInt(fixedAmount2);
       const items = '{"items": [' + this.selectedProducts.items.map((item) => JSON.stringify(item)) + ']}'.replaceAll('/\\/g', '');
       localStorage.setItem('IkeastoreProductsItems', items);
