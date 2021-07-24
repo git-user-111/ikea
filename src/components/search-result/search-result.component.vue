@@ -1,16 +1,16 @@
 <template>
-  <div class="product-search wrapper">
+  <div class="search-result wrapper">
     <input v-model="message" placeholder="Поиск по товару или артикулу">
-    <router-link :to="`/product-search?q=${message}`">Найти</router-link>
+    <router-link :to="`/search-result?q=${message}`">Найти</router-link>
     <p>Всего найдено: {{ products.length }}</p>
-    <div class="product-search_products">
+    <div class="search-result_products">
       <div
-        class="product-search_product"
+        class="search-result_product"
         v-for="product in products"
         :key="product.id"
       >
         <div>
-          <img class="product-search_product-image" :src="product.imageUrl">
+          <img class="search-result_product-image" :src="product.imageUrl">
         </div>
         <p>{{ product.id }}</p>
         <p>{{ product.name }}</p>
@@ -104,7 +104,7 @@ export default {
                   if (
                     item.product.gprDescription.variants
                     && item.product.gprDescription.variants.length === 0
-                  ) { // Если другие разновидности этого товара отсутствуютотсутствуют
+                  ) { // Если другие разновидности этого товара отсутствуют
                     this.products.push({
                       id: item.product.id,
                       name: name,
@@ -187,13 +187,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-search {
+.search-result {
   &_products {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-column-gap: 10px;
     grid-row-gap: 20px;
-    .product-search_product {
+    .search-result_product {
       padding: 15px;
       max-width: 250px;
       &:hover {

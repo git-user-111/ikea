@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import MainPageComponent from "./components/main-page/main-page.component.vue";
-import ProductSearchComponent from "./components/product-search/product-search.component.vue";
+import SearchResultComponent from "./components/search-result/search-result.component.vue";
 
 Vue.use(Router);
 
@@ -16,8 +16,8 @@ export default new Router({
             component: MainPageComponent
         },
         {
-            path: "/product-search",
-            component: ProductSearchComponent
+            path: "/search-result",
+            component: SearchResultComponent
         }
     ]
 });

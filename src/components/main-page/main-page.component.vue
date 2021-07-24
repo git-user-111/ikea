@@ -4,7 +4,7 @@
     <div class="search wrapper">
       <div class="search_content">
         <input class="search_input" v-model="message" placeholder="Поиск по товару или артикулу">
-        <router-link class="search_button" :to="`/product-search?q=${message}`">
+        <router-link class="search_button" :to="`/search-result?q=${message}`">
           <button-component
             type="button"
             title="Найти"
