@@ -86,17 +86,6 @@ export default {
       productsMax: 500
     }
   },
-  computed: {
-    items() {
-      console.log(1)
-      return this.selectedProducts.items;
-    }
-  },
-  watch: {
-    items: function(val) {
-      console.log(val)
-    }
-  },
   mounted: function () {
     if (localStorage.getItem('IkeastoreProductsAmount') === null) {
       localStorage.setItem('IkeastoreProductsAmount', "0");
