@@ -12,6 +12,7 @@
           <th>Количество</th>
           <th>Цена, руб.</th>
           <th>Сумма, руб.</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -53,6 +54,14 @@
                 <p>{{ product.priceNumeral * product.amount }} ₽</p>
             </div>
           </td>
+          <td>
+            <button-component
+              type="button"
+              title="Удалить"
+              view="button_content--delete"
+              @buttonClicked="deleteProduct(product.id)"
+            ></button-component>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -60,14 +69,19 @@
 </template>
 
 <script>
+import ButtonComponent from '../button/button.component.vue'
 export default {
+  components: {
+    ButtonComponent
+  },
   data: function() {
     return {
       selectedProducts: {
         amount: 0,
         items: []
       },
-      productsMax: 500
+      productsMax: 500,
+      message: "",
     }
   },
   computed: {
@@ -97,6 +111,14 @@ export default {
     this.$eventBus.$on('select-product', (product) => this.selectProduct(product));
   },
   methods: {
+    deleteProduct: function(productId) {
+      this.selectedProducts.items = this.selectedProducts.items.filter((el) => el.id !== productId)
+      const items = '{"items": [' + this.selectedProducts.items.map((item) => JSON.stringify(item)) + ']}'.replaceAll('/\\/g', '');
+      localStorage.setItem('IkeastoreProductsItems', items);
+      this.calculateAmount();
+      localStorage.setItem('IkeastoreProductsAmount', this.selectedProducts.amount.toString());
+      this.$eventBus.$emit('edit-amount-products', this.selectedProducts.amount)
+    },
     changeItemAmount: function(event, product) {
       const fixedAmount = typeof event.target.value === "number"
         ? event.target.value.toString().replace(/^[- 0]$/,'')
@@ -120,14 +142,14 @@ export default {
     setToLocalstorage() {
         const items = '{"items": [' + this.selectedProducts.items.map((item) => JSON.stringify(item)) + ']}'.replaceAll('/\\/g', '');
         localStorage.setItem('IkeastoreProductsItems', items);
-
-        let amount = 0;
-        this.selectedProducts.items.map(item => { amount += item.amount });
-
-        this.selectedProducts.amount = amount;
+        this.calculateAmount();
         localStorage.setItem('IkeastoreProductsAmount', this.selectedProducts.amount.toString());
-
         this.$eventBus.$emit('edit-amount-products', this.selectedProducts.amount);
+    },
+    calculateAmount() {
+      let amount = 0;
+      this.selectedProducts.items.map(item => { amount += item.amount });
+      this.selectedProducts.amount = amount;
     }
   }
 }
