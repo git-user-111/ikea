@@ -1,7 +1,9 @@
 <template>
   <div class="price wrapper">
-    <h2>Стоимость доставки</h2>
-    <div>Здесь будет блок с кругами</div>
+    <h2 class="price_title">Стоимость доставки</h2>
+    <div class="price_circles">
+      <circles-component :prices="costOfDelivery"></circles-component>
+    </div>
     <div class="price_description">
       <div class="price_text--accent">
         <p>*Стоимость по акции за наличный расчет, оплата при получении. При расчете через терминал в офисе стоимость доставки рассчитывается без скидки.</p>
@@ -20,7 +22,21 @@
 </template>
 
 <script>
+import CirclesComponent from '../circles/circles.component.vue';
 export default {
+  components: {
+    CirclesComponent
+  },
+  data: function() {
+    return {
+      costOfDelivery: [
+        { id: 1, percent: 13.9, from: 1, to: 9999, oldPercent: 17 },
+        { id: 2, percent: 11.9, from: 10000, to: 24999, oldPercent: 15 },
+        { id: 3, percent: 9.9, from: 25000, to: 39999, oldPercent: 13 },
+        { id: 4, percent: 7.9, from: 40000, to: 300000, oldPercent: 11 },
+      ]
+    }
+  }
 }
 </script>
 
