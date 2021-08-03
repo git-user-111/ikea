@@ -42,28 +42,35 @@ export default {
 
 <style lang="sass">
 .price {
-    &_description {
-      font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  &_title {
+    font-size: 30px;
+    text-align: center;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  &_description {
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  }
+
+  &_text {
+    &--accent {
+      font-size: 18px;
+      color: #1e5a01;
+      font-weight: bold;
+      background-color: #d8efcc;
+      border-color: #c8e8b8;
+      padding: 0.75rem 1.25rem;
+      border-radius: 3px;
     }
-    &_text {
-      &--accent {
-        font-size: 18px;
-        color: #1e5a01;
-        font-weight: bold;
-        background-color: #d8efcc;
-        border-color: #c8e8b8;
-        padding: 0.75rem 1.25rem;
-        border-radius: 3px;
-      }
-      &--medium {
-        font-size: 1.09375rem;
-      }
-      &--small {
-        font-size: 0.875rem;
-      }
-      &--bold {
-        font-weight: bold;
-      }
+    &--medium {
+      font-size: 1.09375rem;
     }
+    &--small {
+      font-size: 0.875rem;
+    }
+    &--bold {
+      font-weight: bold;
+    }
+  }
 }
 </style>
