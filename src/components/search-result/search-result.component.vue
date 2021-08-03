@@ -1,7 +1,6 @@
 <template>
   <div class="search-result wrapper">
-    <input v-model="message" placeholder="Поиск по товару или артикулу">
-    <router-link :to="`/search-result?q=${message}`">Найти</router-link>
+    <search-component></search-component>
     <p>Всего найдено: {{ products.length }}</p>
     <div class="search-result_products">
       <div
@@ -23,7 +22,11 @@
 </template>
 
 <script>
+import SearchComponent from '../search/search.component.vue'
 export default {
+  components: {
+    SearchComponent
+  },
   data: function() {
     return {
       message: this.$route.query.q,

@@ -3,6 +3,7 @@
     v-if="$route.path === '/cart'"
     class="shopping-cart wrapper"
   >
+    <search-component></search-component>
     <h1>Ваша корзина</h1>
     <table>
       <thead>
@@ -69,9 +70,11 @@
 </template>
 
 <script>
+import SearchComponent from '../search/search.component.vue'
 import ButtonComponent from '../button/button.component.vue'
 export default {
   components: {
+    SearchComponent,
     ButtonComponent
   },
   data: function() {
@@ -80,8 +83,7 @@ export default {
         amount: 0,
         items: []
       },
-      productsMax: 500,
-      message: "",
+      productsMax: 500
     }
   },
   computed: {
