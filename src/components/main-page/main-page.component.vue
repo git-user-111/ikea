@@ -3,6 +3,9 @@
     <div id="header">
       <header-component></header-component>
     </div>
+    <div id="search">
+      <search-component></search-component>
+    </div>
     <div id="price">
       <price-component></price-component>
     </div>
