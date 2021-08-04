@@ -2,9 +2,11 @@
   <nav class="nav wrapper">
       <ul class="nav_left">
           <li>
-            <router-link to="/">Главная</router-link>
+            <router-link to="/#header" @click.native="anchorHashCheck">Главная</router-link>
           </li>
-          <li>Оплата и доставка</li>
+          <li>
+            <router-link to="/#payment-and-delivery" @click.native="anchorHashCheck">Оплата и доставка</router-link>
+          </li>
           <li>Выбор и заказ</li>
           <li>Отзывы</li>
           <li>Контакты</li>
@@ -27,10 +29,21 @@ export default {
   created: function() {
     this.$eventBus.$on('edit-amount-products', (amount) => this.setProductsAmount(amount));
   },
+  mounted: function () {
+    this.anchorHashCheck()
+  },
   methods: {
     setProductsAmount: function(amount) {
       this.productsAmount = amount;
-    }
+    },
+    anchorHashCheck() {
+      if ((window.location.hash).replace("#/", "") === this.$route.hash) {
+        const el = document.getElementById(this.$route.hash.slice(1))
+        if (el) {
+          window.scrollTo(0, el.offsetTop)
+        }
+      }
+    },
   }
 }
 </script>

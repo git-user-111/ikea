@@ -1,9 +1,14 @@
 <template>
   <div class="main-page">
-    <header-component></header-component>
-    <search-component></search-component>
-    <price-component></price-component>
-    <payment-and-delivery-component></payment-and-delivery-component>
+    <div id="header">
+      <header-component></header-component>
+    </div>
+    <div id="price">
+      <price-component></price-component>
+    </div>
+    <div id="payment-and-delivery">
+      <payment-and-delivery-component></payment-and-delivery-component>
+    </div>
   </div>
 </template>
 
