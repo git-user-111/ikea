@@ -3,6 +3,7 @@
     <header-component></header-component>
     <search-component></search-component>
     <price-component></price-component>
+    <payment-and-delivery-component></payment-and-delivery-component>
   </div>
 </template>
 
@@ -10,11 +11,13 @@
 import HeaderComponent from '../header/header.component.vue';
 import SearchComponent from '../search/search.component.vue';
 import PriceComponent from '../price/price.component.vue';
+import PaymentAndDeliveryComponent from '../payment-and-delivery/payment-and-delivery.component.vue';
 export default {
   components: {
     HeaderComponent,
     SearchComponent,
-    PriceComponent
+    PriceComponent,
+    PaymentAndDeliveryComponent
   },
   data: function() {
     return {
