@@ -12,6 +12,9 @@
     <div id="payment-and-delivery">
       <payment-and-delivery-component></payment-and-delivery-component>
     </div>
+    <div id="select-and-order">
+      <select-and-order-component></select-and-order-component>
+    </div>
   </div>
 </template>
 
@@ -20,12 +23,14 @@ import HeaderComponent from '../header/header.component.vue';
 import SearchComponent from '../search/search.component.vue';
 import PriceComponent from '../price/price.component.vue';
 import PaymentAndDeliveryComponent from '../payment-and-delivery/payment-and-delivery.component.vue';
+import SelectAndOrderComponent from '../select-and-order/select-and-order.component.vue';
 export default {
   components: {
     HeaderComponent,
     SearchComponent,
     PriceComponent,
-    PaymentAndDeliveryComponent
+    PaymentAndDeliveryComponent,
+    SelectAndOrderComponent
   },
   data: function() {
     return {

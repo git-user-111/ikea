@@ -7,7 +7,9 @@
           <li>
             <router-link to="/#payment-and-delivery" @click.native="anchorHashCheck">Оплата и доставка</router-link>
           </li>
-          <li>Выбор и заказ</li>
+          <li>
+            <router-link to="/#select-and-order" @click.native="anchorHashCheck">Выбор и заказ</router-link>
+          </li>
           <li>Отзывы</li>
           <li>Контакты</li>
       </ul>
