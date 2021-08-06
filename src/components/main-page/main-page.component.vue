@@ -15,6 +15,9 @@
     <div id="select-and-order">
       <select-and-order-component></select-and-order-component>
     </div>
+    <div id="feedbacks">
+      <feedbacks-component></feedbacks-component>
+    </div>
   </div>
 </template>
 
@@ -24,13 +27,15 @@ import SearchComponent from '../search/search.component.vue';
 import PriceComponent from '../price/price.component.vue';
 import PaymentAndDeliveryComponent from '../payment-and-delivery/payment-and-delivery.component.vue';
 import SelectAndOrderComponent from '../select-and-order/select-and-order.component.vue';
+import FeedbacksComponent from '../feedbacks/feedbacks.component.vue';
 export default {
   components: {
     HeaderComponent,
     SearchComponent,
     PriceComponent,
     PaymentAndDeliveryComponent,
-    SelectAndOrderComponent
+    SelectAndOrderComponent,
+    FeedbacksComponent
   },
   data: function() {
     return {
