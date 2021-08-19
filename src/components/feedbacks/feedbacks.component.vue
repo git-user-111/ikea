@@ -2,18 +2,20 @@
   <div class="feedbacks wrapper">
       <div class="feedbacks_content">
           <h1>Отзывы</h1>
-        <div class="feedbacks_slider">
-            <div
-                class="feedbacks_feedback"
-                v-for="feedback of feedbacks"
-                v-bind:key="feedback.id"
-                v-bind:class="{ feedbacks_feedbackhide: (feedback.id <= currentFeedbackId) || (feedback.id > currentFeedbackId + 3) }"
-            >
-                <p>{{ feedback.text }}</p>
+          <div class="feedbacks_slider">
+            <button class="feedbacks_button" v-on:click="prevSlide()">◄</button>
+            <div class="feedbacks_items">
+              <div
+                  class="feedbacks_feedback"
+                  v-for="feedback of feedbacks"
+                  v-bind:key="feedback.id"
+                  v-bind:class="{ feedbacks_feedbackhide: (feedback.id <= currentFeedbackId) || (feedback.id > currentFeedbackId + 3) }"
+                >
+                  <p>{{ feedback.text }}</p>
+              </div>
             </div>
-        </div>
-        <button v-on:click="prevSlide()">Prev slide</button>
-        <button v-on:click="nextSlide()">Next slide</button>
+            <button class="feedbacks_button" v-on:click="nextSlide()">►</button>
+          </div>
       </div>
   </div>
 </template>
@@ -23,26 +25,54 @@ export default {
   data: function() {
     return {
       feedbacks: [
-          { id: 1, text: "11111"},
-          { id: 2, text: "22222"},
-          { id: 3, text: "33333"},
-          { id: 4, text: "44444"},
-          { id: 5, text: "55555"},
-          { id: 6, text: "66666"},
-          { id: 7, text: "77777"}
+          {
+            id: 1,
+            text: "Благодарю вашу компанию за быструю доставку . В моем доме очень много мебели из икеа доставленных вашей компанией. Очень удобно быстро. Удобное время работы.",
+            title: "Олег Пономорев 18.08.2018"
+          },
+          {
+            id: 2,
+            text: "Всё супер! Никаких нареканий к качеству услуг нет. Оставляла заявку через сайт, со мной в течение часа связались, рассказали о подробностях оплаты и доставки. Сам заказ пришёл тоже достаточно оперативно, спустя два дня. Всё в целости и сохранности. Больше всего, конечно же, порадовала небольшая стоимость доставки (самая низкая в городе среди аналогичных служб). Рекомендую и, вероятнее всего, буду заказывать ещё именно у них.",
+            title: "la-pomme-de-terre 04.07.2018"
+          },
+          {
+            id: 3,
+            text: "Отличная служба доставки! Во-первых дешевле чем у конкурентов, во-вторых очень быстро! Вежливые курьеры, плюс если товар меньше 18 кг. занесут прямо в квартиру. Девушка-оператор, вежливо и доходчиво объяснила о возврате товара. Заказывала 2 раза, все отлично, никаких дефектов. Думаю буду еще не раз у них заказывать!",
+            title: "Lera Kiselyova 27.06.2018"
+          },
+          {
+            id: 4,
+            text: "Давно я что-то у вас не заказывала и тут решила проверить остался ли ваш сервис на достойном уровне, и была удивлена, компания растет вверх, стали возить еще быстрее, менеджеров стало двое - значит работы прибавилось, а в совокупности эти два факта подтверждают что компания растет) была приятно удивлена сроками доставки, молодцы, так держать :)",
+            title: "Lisa 13.06.2018"
+            },
+          {
+            id: 5,
+            text: "Решили обставить новую квартиру мебелью из Икея. Поехать туда не можем т.к много времени уходит на поездку. Решили воспользоваться транспортной компанией по доставке. Долго выбирали какую из компаний выбрать, смотрели процентное соотношение. В итоге остановились на Сибирской группе доставки, потому что не могли определиться с выбором мебели,приехав в офис, увидели очень дружелюбных и милых девушек,которые не только помогли определиться с выбором,а так же очень понятно и доходчиво рассказали о своих услугах и оформили доставку прямо в квартиру. Все занесли и собрали.",
+            title: "Marialla 18.05.2018"
+          },
+          {
+            id: 6,
+            text: "Очень довольна услугами этой компании! Заказ делала большой, с огромным количеством всякой мелочи... Все привезли, ничего не упустили. Весь заказ был у меня через 48 часов! Также из плюсов отмечу низкую транспортную комиссию, по сравнению с аналогичными компаниями. Однозначно, рекомендую!",
+            title: "Алика 04.03.2018"
+          },
+          {
+            id: 7,
+            text: "Зашла просто сказать спасибо! Не раз пользовались услугами именно этой компании. Всегда все четко, без проволочек, и с товарами и с доставкой.",
+            title: "Алина 23.02.2018"
+          }
       ],
       currentFeedbackId: 0
     }
   },
   methods: {
       nextSlide() {
+        if (this.currentFeedbackId < this.feedbacks.length - 1) {
           this.currentFeedbackId++;
-          console.log(this.currentFeedbackId)
+        }
       },
       prevSlide() {
           if (this.currentFeedbackId !== 0) {
             this.currentFeedbackId--;
-            console.log(this.currentFeedbackId)
           }
       }
   }
@@ -51,11 +81,33 @@ export default {
 
 <style lang="sass">
 .feedbacks {
-    &_feedbackhide {
-        display: none;
+  &_slider {
+    display: flex;
+    justify-content: space-between;
+  }
+  &_items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 20px;
+    padding: 0 20px;
+  }
+  &_feedback {
+    padding: 20px 20px 20px 20px;
+    border: solid 1px #e5e5e5;
+    border-radius: 3px;
+    box-shadow: 0 7px 10px -7px rgb(0 0 0 / 10%);
+    background: #f5f5f7;
+  }
+  &_feedbackhide {
+      display: none;
+  }
+  &_button {
+    color: #949292;
+    background: none;
+    border: 1px solid #d6d6d6;
+    &:hover {
+      background: #f5f5f7;
     }
-    &_content {
-        
-    }
+  }
 }
 </style>
