@@ -10,8 +10,12 @@
           <li>
             <router-link to="/#select-and-order" @click.native="anchorHashCheck">Выбор и заказ</router-link>
           </li>
-          <li>Отзывы</li>
-          <li>Контакты</li>
+          <li>
+            <router-link to="/#feedbacks" @click.native="anchorHashCheck">Отзывы</router-link>
+          </li>
+          <li>
+            <router-link to="/#footer" @click.native="anchorHashCheck">Контакты</router-link>
+          </li>
       </ul>
       <ul class="nav_right">
           <li>
