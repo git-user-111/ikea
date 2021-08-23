@@ -148,6 +148,7 @@ export default {
 
 <style lang="scss" scoped>
 .shopping-cart {
+  min-height: calc(100vh - 61px - 256.81px);
   table {
     width: 100%;
   }
