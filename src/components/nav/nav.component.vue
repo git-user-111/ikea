@@ -77,10 +77,7 @@ export default {
   font-weight: 600;
   a {
     text-decoration-line: none;
-
-    &:visited {
-      color: #000;
-    }
+    color: #212529;
 
     &:hover {
       color: #007dd6;
