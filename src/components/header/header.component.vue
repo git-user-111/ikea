@@ -3,7 +3,7 @@
     <div class="header_content">
     <h1>ДОСТАВКА ТОВАРОВ<br>ИЗ ИКЕА В ТОМСК</h1>
     <p>СЛУЖБА ДОСТАВКИ</p>
-    <h2>«Ikeastore»</h2>
+    <h2 class="header_name">«Ikeastore»</h2>
     <p>пр. Ленина, ???<br>+7-913-800-70-99<br>Отправить заявку на почту:<br>ikeastore@domain.ru</p>
     <button-component
       type="button"
@@ -40,6 +40,10 @@ export default {
     padding-top: 40px;
     padding-bottom: 40px;
     text-shadow: 1px 1px 2px black;
+  }
+
+  &_name {
+    color: #fdd835;
   }
 }
 </style>
