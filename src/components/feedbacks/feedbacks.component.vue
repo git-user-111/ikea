@@ -12,6 +12,7 @@
                   v-bind:class="{ feedbacks_feedbackhide: (feedback.id <= currentFeedbackId) || (feedback.id > currentFeedbackId + 3) }"
                 >
                   <p>{{ feedback.text }}</p>
+                  <p class="feedbacks_title">{{ feedback.title }}</p>
               </div>
             </div>
             <button class="feedbacks_button" v-on:click="nextSlide()">►</button>
@@ -108,6 +109,10 @@ export default {
     &:hover {
       background: #f5f5f7;
     }
+  }
+
+  &_title {
+    color: #888;
   }
 }
 </style>
