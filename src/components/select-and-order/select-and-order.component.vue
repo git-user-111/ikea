@@ -2,11 +2,13 @@
   <div class="select-and-order wrapper">
     <h1>Выбор и заказ</h1>
     <p>1. На нашем сайте: добавьте товары в корзину и оформите заявку.</p>
+      <a href="https://publications-ru-ru.ikea.com/ikea_catalogue_21/page/1" target="_blank">
         <button-component
           type="button"
           title="Каталог"
           view="button_content"
         ></button-component>
+      </a>
     <p>2. Оформите заказ в наших офисах.</p>
     <p>3. Оформите заказ по телефону <a href="tel:+79999999999">8 999 999 9999</a></p>
   </div>

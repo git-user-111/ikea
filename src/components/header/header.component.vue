@@ -5,12 +5,13 @@
     <p>СЛУЖБА ДОСТАВКИ</p>
     <h2 class="header_name">«Ikeastore»</h2>
     <p>пр. Ленина, ???<br>+7-913-800-70-99<br>Отправить заявку на почту:<br>ikeastore@domain.ru</p>
-    <button-component
-      type="button"
-      title="Каталог IKEA"
-      view="button_content--catalog"
-      @buttonClicked="onUpdateSalary"
-    ></button-component>
+    <a href="https://publications-ru-ru.ikea.com/ikea_catalogue_21/page/1" target="_blank">
+      <button-component
+        type="button"
+        title="Каталог IKEA"
+        view="button_content--catalog"
+      ></button-component>
+    </a>
     </div>
   </div>
 </template>
@@ -21,11 +22,6 @@ export default {
   components: {
     ButtonComponent
   },
-  methods: {
-    onUpdateSalary(someData) {
-      console.log(someData)
-    }
-  }
 }
 </script>
 
