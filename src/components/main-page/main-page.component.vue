@@ -6,16 +6,16 @@
     <div id="search">
       <search-component></search-component>
     </div>
-    <div id="price">
+    <div id="price" class="main-page_section">
       <price-component></price-component>
     </div>
-    <div id="payment-and-delivery">
+    <div id="payment-and-delivery" class="main-page_section">
       <payment-and-delivery-component></payment-and-delivery-component>
     </div>
-    <div id="select-and-order">
+    <div id="select-and-order" class="main-page_section">
       <select-and-order-component></select-and-order-component>
     </div>
-    <div id="feedbacks">
+    <div id="feedbacks" class="main-page_section">
       <feedbacks-component></feedbacks-component>
     </div>
   </div>
@@ -47,4 +47,16 @@ export default {
 
 <style lang="sass">
 @import "../../assets/variables.scss";
+
+.main-page_section {
+  &+ .main-page_section {
+    margin-top: 5vh;
+    padding-top: 1vh;
+    border-top: 1px solid #d6d6d6;
+  }
+
+  &:last-child {
+    margin-bottom: 10vh;
+  }
+}
 </style>
