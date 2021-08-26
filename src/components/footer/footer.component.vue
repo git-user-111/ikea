@@ -5,10 +5,16 @@
             <h2>Доставка товаров из ИКЕА в Томск каждый будний день</h2>
             <div class="footer_columns">
                 <div class="footer_column-left">
-                <p>пр. Ленина, ???</p>
-                <p>+7-913-800-70-99</p>
-                <p>ikeastore@domain.ru</p>
-                <p>© Служба доставки «Ikeastore», 2021</p>
+                    <p>пр. Ленина, ???</p>
+                    <p>+7-913-800-70-99</p>
+                    <p>ikeastore@domain.ru</p>
+                    <p>Адрес: пр. Ленина, 166, оф.18а</p>
+                    <p>
+                        <b>Часы работы:</b><br>
+                        - ПН-ПТ с 11 до 19,<br>
+                        - СБ-ВС с 11 до 16.
+                    </p>
+                    <p>© Служба доставки «Ikeastore», 2021</p>
                 </div>
                 <div class="footer_column-right">
                     <p></p>
