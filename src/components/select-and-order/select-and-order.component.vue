@@ -1,6 +1,6 @@
 <template>
   <div class="select-and-order wrapper">
-    <h1>Выбор и заказ</h1>
+    <h2>Выбор и заказ</h2>
     <p>1. На нашем сайте: добавьте товары в корзину и оформите заявку.</p>
       <a href="https://publications-ru-ru.ikea.com/ikea_catalogue_21/page/1" target="_blank">
         <button-component

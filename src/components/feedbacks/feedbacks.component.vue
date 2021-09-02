@@ -1,7 +1,7 @@
 <template>
   <div class="feedbacks wrapper">
       <div class="feedbacks_content">
-          <h1>Отзывы</h1>
+          <h2>Отзывы</h2>
           <div class="feedbacks_slider">
             <button class="feedbacks_button" v-on:click="prevSlide()">◄</button>
             <div class="feedbacks_items">

@@ -4,7 +4,7 @@
     class="shopping-cart wrapper"
   >
     <search-component></search-component>
-    <h1>Ваша корзина</h1>
+    <h2>Ваша корзина</h2>
     <table>
       <thead>
         <tr>
