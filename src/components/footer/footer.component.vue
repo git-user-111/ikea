@@ -1,5 +1,5 @@
 <template>
-  <div class="footer" id="footer">
+  <footer class="footer" id="footer">
     <div class="footer_content">
       <div class="wrapper">
         <h2>Доставка товаров из ИКЕА в Томск каждый будний день</h2>
@@ -22,7 +22,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script>

@@ -1,23 +1,25 @@
 <template>
   <div class="main-page">
-    <div id="header">
+    <header id="header">
       <header-component></header-component>
-    </div>
-    <div id="search">
-      <search-component></search-component>
-    </div>
-    <div id="price" class="main-page_section">
-      <price-component></price-component>
-    </div>
-    <div id="payment-and-delivery" class="main-page_section">
-      <payment-and-delivery-component></payment-and-delivery-component>
-    </div>
-    <div id="select-and-order" class="main-page_section">
-      <select-and-order-component></select-and-order-component>
-    </div>
-    <div id="feedbacks" class="main-page_section">
-      <feedbacks-component></feedbacks-component>
-    </div>
+    </header>
+    <main>
+      <div id="search">
+        <search-component></search-component>
+      </div>
+      <section id="price" class="main-page_section">
+        <price-component></price-component>
+      </section>
+      <section id="payment-and-delivery" class="main-page_section">
+        <payment-and-delivery-component></payment-and-delivery-component>
+      </section>
+      <section id="select-and-order" class="main-page_section">
+        <select-and-order-component></select-and-order-component>
+      </section>
+      <section id="feedbacks" class="main-page_section">
+        <feedbacks-component></feedbacks-component>
+      </section>
+    </main>
   </div>
 </template>
 
