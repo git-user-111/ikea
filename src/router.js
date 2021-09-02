@@ -6,18 +6,18 @@ import SearchResultComponent from "./components/search-result/search-result.comp
 Vue.use(Router);
 
 export default new Router({
-    routes: [
-        {
-            path: "/",
-            component: MainPageComponent
-        },
-        {
-            path: "/cart",
-            component: MainPageComponent
-        },
-        {
-            path: "/search-result",
-            component: SearchResultComponent
-        }
-    ]
+  routes: [
+    {
+      path: "/",
+      component: MainPageComponent
+    },
+    {
+      path: "/cart",
+      component: MainPageComponent
+    },
+    {
+      path: "/search-result",
+      component: SearchResultComponent
+    }
+  ]
 });
